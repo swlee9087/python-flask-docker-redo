@@ -26,7 +26,7 @@ class MyPandas(object):
 
         df1 = pd.DataFrame({"a":[1,2],"b":[3,4],"c":[5,6]})
         ic(df1)
-        
+
         '''         
         Q2. 다음 결과 출력
            A   B   C
@@ -450,18 +450,27 @@ class MyPandas(object):
         '''
 
         '''  
-        Q11. 체의 각 행에 대해 세번째 NaN 값이 들어 있는 열을 찾으시오. 일련의 열 레이블을 반환해야 합니다.
-          ic| type(df11.isnull()): <class 'pandas.core.frame.DataFrame'>
-          ic| df11: 0    e
-                   1    c
-                   2    d
-                   3    h
-                   4    d
-                  dtype: object
-        '''
+         Q11. 체의 각 행에 대해 세번째 NaN 값이 들어 있는 열을 찾으시오. 일련의 열 레이블을 반환해야 합니다.
+         nan = np.nan
+         data = [[0.04, nan, nan, 0.25, nan, 0.43, 0.71, 0.51, nan, nan],
+                 [nan, nan, nan, 0.04, 0.76, nan, nan, 0.67, 0.76, 0.16],
+                 [nan, nan, 0.5, nan, 0.31, 0.4, nan, nan, 0.24, 0.01],
+                 [0.49, nan, nan, 0.62, 0.73, 0.26, 0.85, nan, nan, nan],
+                 [nan, nan, 0.41, nan, 0.05, nan, 0.61, nan, 0.48, 0.68]]
+         columns = list('abcdefghij')
+           ic| type(df11.isnull()): <class 'pandas.core.frame.DataFrame'>
+           ic| df11: 0    e
+                    1    c
+                    2    d
+                    3    h
+                    4    d
+                   dtype: object
+         '''
 
         '''  
         Q12. grps 에서 a, b, c 별로 가장 큰 값
+            df12 = pd.DataFrame({'grps': list('aaabbcaabcccbbc'),
+                           'vals': [12, 345, 3, 1, 45, 14, 4, 52, 54, 23, 235, 21, 57, 3, 87]})
           ic| type(df12.groupby('grps')): <class 'pandas.core.groupby.generic.DataFrameGroupBy'>
           ic| type(df12.groupby('grps')['vals']): <class 'pandas.core.groupby.generic.SeriesGroupBy'>
           ic| df12: grps
@@ -472,15 +481,18 @@ class MyPandas(object):
         '''
 
         '''  
-        Q13. DF 객체를 list 로 변환
+        Q13. 다음 DF13 객체를 list 로 변환
+        df13 = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
         ic| type(ls): <class 'list'>
         ic| df13.values.tolist(): [[1, 4], [2, 5], [3, 6]]
         '''
 
         '''  
-        Q14. DF 객체를 dictionary 로 변환
+        Q14. 아래 결과로 출력되는 DF 객체 전환 코드작성
         ic| df14.to_dict(): {'A': {0: 1, 1: 2, 2: 3}, 'B': {0: 4, 1: 5, 2: 6}}
         '''
+
+        # https://github.com/parkjungkwan/madrid-flask-docker/blob/main/lecture/mypandas/models.py
 
 
 if __name__ == '__main__':

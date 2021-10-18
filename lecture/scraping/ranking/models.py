@@ -2,10 +2,10 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import requests
 
-from lecture.menu.models import print_menu
-from lecture.scraping.bugs.models import Bugsmusic
-from lecture.scraping.melon import Melon
-from lecture.scraping import view
+# from lecture.menu.models import print_menu
+# from lecture.scraping.bugs.models import Bugsmusic
+# from lecture.scraping.melon import Melon
+# from lecture.scraping import view
 
 
 class MusicRanking(object):
@@ -20,8 +20,8 @@ class MusicRanking(object):
     titles = []
     dict = {}
     df = None  # matrix
-    bugs = Bugsmusic()
-    melon = Melon()
+    # bugs = Bugsmusic()
+    # melon = Melon()
 
 
     def set_html(self):
@@ -58,47 +58,47 @@ class MusicRanking(object):
         self.df.to_csv(path, sep=',', na_rep='NaN')  # not typo
 
 
-def main():
-    mr = MusicRanking()
-    while 1:
-        n_ = 0
-        menu = print_menu(['exit', 'Bugs URL', 'Melon URL', 'Output',
-                           'Print Dict', 'Dict to Df', 'Df to CSV', 'Read from CSV'])
-        if menu == 0:
-            break
-        elif menu == 1:  # bugs url to html
-            mr.domain = 'https://music.bugs.co.kr/chart/track/realtime/total?'
-            mr.query_string = 'chartdate=20210721&charthour=14'
-            mr.set_html()
+    def main(self):
+        mr = MusicRanking()
+        while 1:
+            n_ = 0
+            menu = print_menu(['exit', 'Bugs URL', 'Melon URL', 'Output',
+                               'Print Dict', 'Dict to Df', 'Df to CSV', 'Read from CSV'])
+            if menu == 0:
+                break
+            elif menu == 1:  # bugs url to html
+                mr.domain = 'https://music.bugs.co.kr/chart/track/realtime/total?'
+                mr.query_string = 'chartdate=20210721&charthour=14'
+                mr.set_html()
 
-        elif menu == 2:  # melon url to html
-            mr.domain = 'https://www.melon.com/chart/index.htm?dayTime='
-            mr.query_string = '2021072114'
-            mr.set_html()
+            elif menu == 2:  # melon url to html
+                mr.domain = 'https://www.melon.com/chart/index.htm?dayTime='
+                mr.query_string = '2021072114'
+                mr.set_html()
 
-        elif menu == 3:  # crawling output
+            elif menu == 3:  # crawling output
 
-            for i, j in zip(, melon):
-                if mr.tag_name = 'p'
-                mr.class_name.append('artist')
-                mr.class_name.append('title')
+                for i, j in zip(, melon):
+                    if mr.tag_name = 'p'
+                    mr.class_name.append('artist')
+                    mr.class_name.append('title')
 
-                mr.tag_name = 'div'
-                mr.class_name.append('ellipsis rank02')
-                mr.class_name.append('ellipsis rank01')
-                mr.get_ranking()
+                    mr.tag_name = 'div'
+                    mr.class_name.append('ellipsis rank02')
+                    mr.class_name.append('ellipsis rank01')
+                    mr.get_ranking()
 
-        elif menu == 4:  # print dict
-            mr.insert_dict()
+            elif menu == 4:  # print dict
+                mr.insert_dict()
 
-        elif menu == 5:  # dc to df
-            mr.dict_to_dataframe()
+            elif menu == 5:  # dc to df
+                mr.dict_to_dataframe()
 
-        elif menu == 6:  # df to csv
-            mr.df_to_csv()
+            elif menu == 6:  # df to csv
+                mr.df_to_csv()
 
-        elif menu == 7:  # read from csv
-            view.modeling('', '')
+            elif menu == 7:  # read from csv
+                view.modeling('', '')
 
 
 if __name__ == '__main__':
